@@ -41,7 +41,7 @@ cp -r dsh-kernel-minimax ~/.dsh/profiles/node_modules/dsh-kernel-minimax
 
 ## 使用
 
-选 `minimax-kernel` 预设和 `minimax-kernel / MiniMax-M2.7` 模型路由，主 agent 就跑在 Mini-Agent 的工具面上。
+选 `minimax-kernel` 预设和 `minimax-kernel / MiniMax-M2.5` 模型路由，主 agent 就跑在 Mini-Agent 的工具面上。
 
 ## 许可证
 

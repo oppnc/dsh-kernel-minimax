@@ -1,6 +1,6 @@
 {
   "name": "dsh-kernel-minimax",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Mini-Agent tool surface written in DSH form: read_file/write_file/edit_file/bash/bash_output/bash_kill/get_skill/list_skills/record_note/recall_notes. Schemas distilled from MiniMax-AI/Mini-Agent source.",
   "type": "module",
   "main": "lib/index.js",

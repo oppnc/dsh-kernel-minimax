@@ -42,7 +42,7 @@ Then add this row to the `minimax-kernel` preset's `cordis.yml`:
 
 ## Usage
 
-Pick the `minimax-kernel` preset and the `minimax-kernel / MiniMax-M2.7` model route. Your main agent runs on the Mini-Agent tool surface.
+Pick the `minimax-kernel` preset and the `minimax-kernel / MiniMax-M2.5` model route. Your main agent runs on the Mini-Agent tool surface.
 
 ## License
 
