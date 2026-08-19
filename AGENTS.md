@@ -141,15 +141,15 @@ documented divergence from upstream.
   cursor (`jobs.read`); `filter_str` is applied to the delta.
 
 - **Skills are scanned from a Mini-Agent `skills/` tree.** `SKILLS_ROOT`
-  defaults to a historical absolute Windows path and is overridable via
-  `DSH_MINIMAX_SKILLS_ROOT`. `discoverSkills()` walks the tree recursively
-  (skipping `node_modules`, `.git`, `.dsh`, `.venv`, `__pycache__`, `dist`),
-  finds every `SKILL.md`, and parses the `name`/`description` YAML frontmatter
-  — mirroring `skill_loader.load_skill`'s required-field contract (a skill
-  with no name or no description is skipped). `get_skill` then strips the
-  frontmatter and reports the skill root as the directory *containing* that
-  `SKILL.md`. The hardcoded default remains the biggest portability liability;
-  the env var is the supported override.
+  has no portable default: it must be set via `DSH_MINIMAX_SKILLS_ROOT`, and
+  when unset `get_skill`/`list_skills` return a clear error instead of
+  scanning a developer-machine path. `discoverSkills()` walks the tree
+  recursively (skipping `node_modules`, `.git`, `.dsh`, `.venv`,
+  `__pycache__`, `dist`), finds every `SKILL.md`, and parses the
+  `name`/`description` YAML frontmatter — mirroring
+  `skill_loader.load_skill`'s required-field contract (a skill with no name
+  or no description is skipped). `get_skill` then strips the frontmatter and
+  reports the skill root as the directory *containing* that `SKILL.md`.
 
 - **Notes live in a plugin-local in-memory store.** `record_note` /
   `recall_notes` push into a `noteStore` `Map` created inside `apply()` and
@@ -180,8 +180,8 @@ Each tool is registered via `tools.register(t)` where `t` satisfies the DSH
 - **No Mini-Agent subagent tool.** Deliberate absence (honesty flag 5). Mesh
   gap #5 is resolved *in the mesh*; this surface does not consume it.
 - **MCP / dynamic tools omitted** — no fixed schema to mirror.
-- **Skills default path is host-specific.** Override with
-  `DSH_MINIMAX_SKILLS_ROOT`.
+- **Skills root must be set explicitly.** `DSH_MINIMAX_SKILLS_ROOT` is
+  required; when unset, `get_skill`/`list_skills` return a clear error.
 - **Notes are process-lifetime only.** Fiber-scoped `Map`, not disk.
 - **`bash` is PowerShell-shaped.** Command strings are `-Command` to
   `pwsh`/`powershell`, not `/bin/bash -lc`.
@@ -233,8 +233,6 @@ package unless noted:
 
 ## Future work
 
-- Default `SKILLS_ROOT` to something portable (or empty-with-error) instead of
-  a developer machine path; the env override already exists.
 - Add on-disk note persistence with a DSH-owned storage location.
 - Consider mapping a DSH MCP provider onto Mini-Agent's `mcp__<server>__<tool>`
   naming.
