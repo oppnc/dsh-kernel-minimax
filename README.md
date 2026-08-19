@@ -16,6 +16,15 @@ Distilled from MiniMax-AI/Mini-Agent `d76a4f6` (2026-02-14). No new model-facing
 api_key: "sk-..."
 ```
 
+## System prompt
+
+`lib/system-prompt.js` carries the upstream **Mini-Agent** `system_prompt.md`
+(skill metadata adapted to DSH); `apply()` registers it as the agent's sole
+system-prompt section (`complete: true` + `suppressRuntimeContext()`).
+
+Mini-Agent has no subagent tool upstream, so this package ships no L2 subagent
+recipes.
+
 ## Install
 
 Copy the package into your profiles' `node_modules`:

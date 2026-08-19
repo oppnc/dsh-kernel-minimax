@@ -32,6 +32,7 @@ function createHarness() {
   const files = new Map()
   const registered = new Map()
   const sections = []
+  let suppressed = false
   const calls = {
     startContinuable: [],
     start: [],
@@ -207,7 +208,7 @@ function createHarness() {
     // Present so a leaky plugin that ctx.get's them is observable, but MiniMax
     // must not register a subagent tool even if these exist.
     subagents,
-    systemPrompt: { section(s) { sections.push(s) } },
+    systemPrompt: { section(s) { sections.push(s) }, suppressRuntimeContext() { suppressed = true } },
     planMode: { set() { return 'ok' } },
     web: { async search() { return { results: [] } }, async fetch() { return { body: { content: '' } } } },
   }
@@ -216,6 +217,7 @@ function createHarness() {
     ctx: { get(name) { return services[name] } },
     registered,
     sections,
+    get suppressed() { return suppressed },
     calls,
     files,
     workspaceRoot,
@@ -264,7 +266,12 @@ async function main() {
     ok(!h.registered.has(name), 'does not register subagent tool ' + name)
   }
   eq(h.calls.startContinuable.length, 0, 'minimax never calls startContinuable during apply')
-  eq(h.sections.length, 0, 'minimax does not register a systemPrompt section')
+  eq(h.sections.length, 1, 'systemPrompt registers persona section')
+  eq(h.sections[0].name, 'deployment:persona', 'persona section name')
+  eq(h.sections[0].order, 0, 'persona section order')
+  eq(h.sections[0].complete, true, 'persona section is complete')
+  ok(typeof h.sections[0].text === 'string', 'persona text is a string')
+  ok(h.suppressed, 'runtime context suppressed')
 
   for (const [name, def] of h.registered) {
     ok(def.output && typeof def.output === 'object', name + ' has output')

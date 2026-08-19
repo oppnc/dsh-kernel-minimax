@@ -16,6 +16,14 @@ DSH 有个很朴素的想法：**一切都是插件**。模型是插件，工具
 api_key: "sk-..."
 ```
 
+## 系统提示词
+
+`lib/system-prompt.js` 携带上游 **Mini-Agent** 的 `system_prompt.md`（技能元数据
+已适配 DSH）；`apply()` 把它注册为 agent 唯一的 system-prompt 段（`complete: true`
++ `suppressRuntimeContext()`）。
+
+Mini-Agent 上游没有子代理工具，所以本包不提供 L2 子代理配方。
+
 ## 安装
 
 把本包复制到 profiles 的 `node_modules`：
