@@ -27,18 +27,20 @@ recipes.
 
 ## Install
 
-Copy the package into your profiles' `node_modules`:
+1. Install the plugin into your profile with the official plugin command:
 
-```sh
-cp -r dsh-kernel-minimax ~/.dsh/profiles/node_modules/dsh-kernel-minimax
-```
+   ```sh
+   dsh plugin --profile web add github:oppnc/dsh-kernel-minimax
+   ```
 
-Then add this row to the `minimax-kernel` preset's `cordis.yml`:
+   This package is a plain plugin (no `dsh.bundle` declaration), so `dsh plugin` installs it as an inactive dependency — that is expected: the preset row below references it by name.
 
-```yaml
-- id: minimax-surface
-  name: dsh-kernel-minimax
-```
+2. Install the `minimax-kernel` agent preset: copy its directory into `~/.dsh/.agent-presets/minimax-kernel/`. The shipped preset already includes the `minimax-surface` row; if you author your own preset, add it:
+
+   ```yaml
+   - id: minimax-surface
+     name: dsh-kernel-minimax
+   ```
 
 ## Usage
 

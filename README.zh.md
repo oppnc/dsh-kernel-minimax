@@ -26,18 +26,20 @@ Mini-Agent 上游没有子代理工具，所以本包不提供 L2 子代理配�
 
 ## 安装
 
-把本包复制到 profiles 的 `node_modules`：
+1. 用官方插件命令把本包装进你的 profile：
 
-```sh
-cp -r dsh-kernel-minimax ~/.dsh/profiles/node_modules/dsh-kernel-minimax
-```
+   ```sh
+   dsh plugin --profile web add github:oppnc/dsh-kernel-minimax
+   ```
 
-然后在 `minimax-kernel` 预设的 `cordis.yml` 里加一行：
+   本包是普通插件（没有 `dsh.bundle` 声明），`dsh plugin` 会把它作为不激活的依赖安装——这是预期行为：下面的预设行会按名字引用它。
 
-```yaml
-- id: minimax-surface
-  name: dsh-kernel-minimax
-```
+2. 安装 `minimax-kernel` agent 预设：把它的目录复制到 `~/.dsh/.agent-presets/minimax-kernel/`。随附的预设已经包含 `minimax-surface` 行；如果你自己写预设，就加上这一行：
+
+   ```yaml
+   - id: minimax-surface
+     name: dsh-kernel-minimax
+   ```
 
 ## 使用
 
