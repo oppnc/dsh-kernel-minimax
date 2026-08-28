@@ -34,7 +34,14 @@ Mini-Agent 上游没有子代理工具，所以本包不提供 L2 子代理配�
 
    本包是普通插件（没有 `dsh.bundle` 声明），`dsh plugin` 会把它作为不激活的依赖安装——这是预期行为：下面的预设行会按名字引用它。
 
-2. 安装 `minimax-kernel` agent 预设：把它的目录复制到 `~/.dsh/.agent-presets/minimax-kernel/`。随附的预设已经包含 `minimax-surface` 行；如果你自己写预设，就加上这一行：
+2. `minimax-kernel` agent 预设随 `dsh-kernel-mesh` 的 `presets/` 目录分发。把它复制到官方用户预设根目录（如果你不用 mesh，就从 mesh 仓库取预设目录）：
+
+     ```sh
+     dsh_home="${DSH_HOME:-$HOME/.dsh}"
+     cp -r "$dsh_home/profiles/web/node_modules/dsh-kernel-mesh/presets/minimax-kernel" "$dsh_home/.agent-presets/"
+     ```
+
+     预设已经包含 `minimax-surface` 行；如果你自己写预设，就加上这一行：
 
    ```yaml
    - id: minimax-surface
