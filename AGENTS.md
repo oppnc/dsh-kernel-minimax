@@ -36,6 +36,18 @@ Every registration (`tools.register`) and the in-memory `noteStore` live inside
 `apply()` and are bound to the plugin fiber. There are no module-level side
 effects. Stopping or updating the row disposes the tools and the note map.
 
+### Mesh dependency and fallback mount
+
+`dsh-kernel-mesh` is a declared dependency (`github:oppnc/dsh-kernel-mesh#semver:^0.1.6`),
+so installing this package also installs the mesh. The mesh is still expected to be mounted
+ONCE by the host composition (profile bundle) and shared by all vendor packages. As a
+safety net, `apply()` first runs `ensureKernelMesh(ctx, ...)` (`lib/ensure-mesh.js`): if
+the mesh's `kernelMesh` marker service is absent AND no `*-kernel` route is registered,
+the plugin mounts its own copy of the mesh (bare specifier, with a dev-layout sibling
+fallback). A fallback-mounted mesh shares THIS row's lifecycle — its routes disappear
+when the row unloads — so the profile-level mount stays the preferred form and the
+fallback logs a pointer to `dsh plugin add dsh-kernel-mesh`.
+
 ## System prompt (persona)
 
 `lib/system-prompt.js` carries the upstream **Mini-Agent** system prompt, rewritten in DSH
