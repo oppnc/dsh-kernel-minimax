@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.6
+
+- **Mesh dependency + fallback mount.** `dsh-kernel-mesh` is now a declared
+  dependency (`github:oppnc/dsh-kernel-mesh#semver:^0.1.6`), so installing this
+  package also installs the mesh. At `apply()` time the plugin checks for the
+  mesh's `kernelMesh` marker service / any `*-kernel` route; when the host
+  composition never mounted the mesh, the plugin mounts its own copy
+  (`lib/ensure-mesh.js`) so kernel routes and subagent recipes keep working —
+  with a logged pointer to the preferred profile-level mount
+  (`dsh plugin add dsh-kernel-mesh`), since a fallback-mounted mesh shares this
+  row's lifecycle.
+
 ## 0.1.4
 
 - **`SKILLS_ROOT` no longer defaults to a developer-machine path.** It must be
