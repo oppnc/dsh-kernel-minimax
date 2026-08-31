@@ -33,6 +33,8 @@ recipes.
    dsh plugin --profile web add github:oppnc/dsh-kernel-minimax
    ```
 
+   Once the package is on npm, `dsh plugin --profile web add dsh-kernel-minimax` is preferred (prebuilt, no `allowBuilds`).
+
    This package is a plain plugin (no `dsh.bundle` declaration), so `dsh plugin` installs it as an inactive dependency — that is expected: the preset row below references it by name.
 
 2. The `minimax-kernel` agent preset ships in `dsh-kernel-mesh`'s `presets/` directory. Copy it into the official user-preset root (or, if you run without the mesh, get the preset directory from the mesh repo):

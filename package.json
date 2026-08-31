@@ -1,6 +1,6 @@
 {
   "name": "dsh-kernel-minimax",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Mini-Agent tool surface written in DSH form: read_file/write_file/edit_file/bash/bash_output/bash_kill/get_skill/list_skills/record_note/recall_notes. Schemas distilled from MiniMax-AI/Mini-Agent source.",
   "type": "module",
   "main": "lib/index.js",
@@ -32,16 +32,21 @@
   },
   "keywords": [
     "dsh",
+    "dsh-plugin",
     "deepseek-harness",
     "cordis",
     "minimax",
     "mini-agent"
   ],
+  "homepage": "https://github.com/oppnc/dsh-kernel-minimax#readme",
+  "bugs": {
+    "url": "https://github.com/oppnc/dsh-kernel-minimax/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/oppnc/dsh-kernel-minimax.git"
   },
   "dependencies": {
-    "dsh-kernel-mesh": "github:oppnc/dsh-kernel-mesh#semver:^0.1.6"
+    "dsh-kernel-mesh": "github:oppnc/dsh-kernel-mesh#semver:^0.1.7"
   }
 }

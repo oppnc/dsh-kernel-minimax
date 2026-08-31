@@ -32,6 +32,8 @@ Mini-Agent 上游没有子代理工具，所以本包不提供 L2 子代理配�
    dsh plugin --profile web add github:oppnc/dsh-kernel-minimax
    ```
 
+   包发布到 npm 之后，优先用 `dsh plugin --profile web add dsh-kernel-minimax`（预构建，无需 `allowBuilds`）。
+
    本包是普通插件（没有 `dsh.bundle` 声明），`dsh plugin` 会把它作为不激活的依赖安装——这是预期行为：下面的预设行会按名字引用它。
 
 2. `minimax-kernel` agent 预设随 `dsh-kernel-mesh` 的 `presets/` 目录分发。把它复制到官方用户预设根目录（如果你不用 mesh，就从 mesh 仓库取预设目录）：
