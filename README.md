@@ -30,10 +30,10 @@ recipes.
 1. Install the plugin into your profile with the official plugin command:
 
    ```sh
-   dsh plugin --profile web add github:oppnc/dsh-kernel-minimax
+   dsh plugin --profile web add dsh-kernel-minimax
    ```
 
-   Once the package is on npm, `dsh plugin --profile web add dsh-kernel-minimax` is preferred (prebuilt, no `allowBuilds`).
+   GitHub also works (`dsh plugin --profile web add github:oppnc/dsh-kernel-minimax`) because `lib/` ships in the repository.
 
    This package is a plain plugin (no `dsh.bundle` declaration), so `dsh plugin` installs it as an inactive dependency — that is expected: the preset row below references it by name.
 

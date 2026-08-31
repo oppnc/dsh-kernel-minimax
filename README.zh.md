@@ -29,10 +29,10 @@ Mini-Agent 上游没有子代理工具，所以本包不提供 L2 子代理配�
 1. 用官方插件命令把本包装进你的 profile：
 
    ```sh
-   dsh plugin --profile web add github:oppnc/dsh-kernel-minimax
+   dsh plugin --profile web add dsh-kernel-minimax
    ```
 
-   包发布到 npm 之后，优先用 `dsh plugin --profile web add dsh-kernel-minimax`（预构建，无需 `allowBuilds`）。
+   GitHub 也可以（`dsh plugin --profile web add github:oppnc/dsh-kernel-minimax`），因为本仓库已经提交了 `lib/`。
 
    本包是普通插件（没有 `dsh.bundle` 声明），`dsh plugin` 会把它作为不激活的依赖安装——这是预期行为：下面的预设行会按名字引用它。
 
